@@ -1,1 +1,29 @@
-
+{
+  "project_info": {
+    "project_number": "650495908091",
+    "project_id": "programovilbase",
+    "storage_bucket": "programovilbase.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:650495908091:android:ff7ff282165b47607af85e",
+        "android_client_info": {
+          "package_name": "com.ucb.ucbtest"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCv9eFpDhn8DtwpMOl4aEXix1jXI_3yBp8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
