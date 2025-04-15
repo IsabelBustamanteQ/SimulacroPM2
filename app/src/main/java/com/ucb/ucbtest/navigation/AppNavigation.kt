@@ -9,6 +9,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.ucb.domain.Movie
+import com.ucb.ucbtest.Simulacro.FinanzasUI
+import com.ucb.ucbtest.Simulacro.ListaRegistroUI
+import com.ucb.ucbtest.Simulacro.registrarEgresoUI
+import com.ucb.ucbtest.Simulacro.registrarIngresoUI
 import com.ucb.ucbtest.counter.CounterUI
 import com.ucb.ucbtest.gitalias.GitaliasUI
 import com.ucb.ucbtest.login.LoginUI
@@ -26,7 +30,8 @@ fun AppNavigation() {
 
     NavHost(
         navController = navController,
-        startDestination = Screen.LoginScreen.route,
+//        startDestination = Screen.LoginScreen.route,
+        startDestination = Screen.FinanzasScreen.route,
         enterTransition = { EnterTransition.None },
         exitTransition = { ExitTransition.None },
         popEnterTransition = { EnterTransition.None },
@@ -58,7 +63,6 @@ fun AppNavigation() {
         }
 
         composable(Screen.MoviesScreen.route) {
-
             MoviesUI( onSuccess = {
                 movie ->
                     val movieJson = Json.encodeToString(movie)
@@ -79,11 +83,25 @@ fun AppNavigation() {
             val movieDecoded = URLDecoder.decode(movieJson, "UTF-8")
             val movie = Json.decodeFromString<Movie>(movieDecoded)
 
-            MovieDetailUI( movie = movie, onBackPressed = { navController.popBackStack() })
+            MovieDetailUI(movie = movie, onBackPressed = { navController.popBackStack() })
         }
 
         composable(Screen.CounterScreen.route) {
             CounterUI()
+        }
+        composable(Screen.FinanzasScreen.route) {
+            FinanzasUI(navController = navController, onSuccess = {})
+        }
+        composable(Screen.FinanzasIngreso.route) {
+            registrarIngresoUI(navController = navController, onBackPressed = { navController.popBackStack() })
+        }
+
+        composable(Screen.FinanzasEgreso.route) {
+            registrarEgresoUI(navController = navController, onBackPressed = { navController.popBackStack() })
+        }
+
+        composable(Screen.FinanzasRegistros.route) {
+            ListaRegistroUI(navController = navController, onBackPressed = { navController.popBackStack() })
         }
 
     }

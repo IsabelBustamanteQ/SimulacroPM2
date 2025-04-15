@@ -4,6 +4,10 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import com.ucb.ucbtest.Simulacro.FinanzasUI
+import com.ucb.ucbtest.Simulacro.ListaRegistroUI
+import com.ucb.ucbtest.Simulacro.registrarEgresoUI
+import com.ucb.ucbtest.Simulacro.registrarIngresoUI
 import com.ucb.ucbtest.counter.CounterUI
 import com.ucb.ucbtest.counter.CounterUIV2
 import com.ucb.ucbtest.gitalias.GitaliasUI
@@ -22,6 +26,10 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             AppNavigation()
+//            FinanzasUI()
+//            registrarIngresoUI()
+//            ListaRegistroUI()
+//            registrarEgresoUI()
         }
     }
 }

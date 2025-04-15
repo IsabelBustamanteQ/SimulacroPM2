@@ -45,7 +45,7 @@ class Util {
             // Create the notification
             val notification = NotificationCompat.Builder(context, "default_channel")
                 .setContentTitle("New Notification")
-                .setContentText("This is a simple notification with an icon.")
+                .setContentText("Total Negativo, Los egresos son mayores que los ingresos")
                 .setSmallIcon(R.drawable.ic_dialog_info) // Set your icon here
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setAutoCancel(true) // Automatically dismiss after user taps

@@ -1,6 +1,7 @@
 package com.ucb.ucbtest.di
 
 import android.content.Context
+import com.ucb.data.FinanzasRepository
 import com.ucb.data.GithubRepository
 import com.ucb.data.LoginRepository
 import com.ucb.data.MovieRepository
@@ -10,6 +11,7 @@ import com.ucb.data.git.IGitRemoteDataSource
 import com.ucb.data.git.ILocalDataSource
 import com.ucb.data.movie.IMovieRemoteDataSource
 import com.ucb.data.push.IPushDataSource
+import com.ucb.data.simulacro.IFinanzasLocalDataSource
 import com.ucb.framework.github.GithubLocalDataSource
 import com.ucb.framework.github.GithubRemoteDataSource
 import com.ucb.framework.movie.MovieRemoteDataSource
@@ -27,8 +29,14 @@ import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 import com.ucb.framework.datastore.LoginDataSource
 import com.ucb.framework.push.FirebaseNotificationDataSource
+import com.ucb.framework.simulacro.FinanzasLocalDataSource
 import com.ucb.usecases.GetEmailKey
 import com.ucb.usecases.ObtainToken
+import com.ucb.usecases.simulacro.DeleteFinanza
+import com.ucb.usecases.simulacro.DoEgreso
+import com.ucb.usecases.simulacro.DoIngreso
+import com.ucb.usecases.simulacro.GetRegistros
+import com.ucb.usecases.simulacro.GetTotal
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -130,5 +138,44 @@ object AppModule {
     @Singleton
     fun provideIPushDataSource(): IPushDataSource {
         return FirebaseNotificationDataSource()
+    }
+
+//    Simulacro
+@Provides
+@Singleton
+fun provideFinanzasLocalDataSource(@ApplicationContext context: Context): IFinanzasLocalDataSource {
+    return FinanzasLocalDataSource(context)
+}
+
+    @Provides
+    @Singleton
+    fun finanzasRepository(localDataSource: IFinanzasLocalDataSource): FinanzasRepository {
+        return FinanzasRepository(localDataSource)
+    }
+
+    @Provides
+    @Singleton
+    fun provideDeleteFinanza(repository: FinanzasRepository): DeleteFinanza {
+        return DeleteFinanza(repository)
+    }
+    @Provides
+    @Singleton
+    fun provideDoEgreso(repository: FinanzasRepository): DoEgreso {
+        return DoEgreso(repository)
+    }
+    @Provides
+    @Singleton
+    fun provideDoIngreso(repository: FinanzasRepository): DoIngreso {
+        return DoIngreso(repository)
+    }
+    @Provides
+    @Singleton
+    fun provideGetRegistros(repository: FinanzasRepository): GetRegistros {
+        return GetRegistros(repository)
+    }
+    @Provides
+    @Singleton
+    fun provideGetTotal(repository: FinanzasRepository): GetTotal {
+        return GetTotal(repository)
     }
 }
